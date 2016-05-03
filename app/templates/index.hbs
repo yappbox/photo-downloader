@@ -1,0 +1,25 @@
+<div>Paste in your CSV and press the Parse button</div>
+{{one-way-textarea csvText cols=80 rows=10 update=(action (mut csvText))}}
+
+<br>
+<button {{action 'parse'}}>Parse</button>
+
+{{#if error}}
+  <div style="color:red">{{error.message}}</div>
+{{/if}}
+
+{{#if isDownloading}}
+  {{progress-bar percent-complete=progress}}
+  <div>
+    {{currentFile}}
+  </div>
+{{else}}
+  <ul>
+    {{#each groups as |group|}}
+      <li>
+        Group {{group.num}}: Contains {{group.records.length}} photos from {{group.startingTimestamp}} to {{group.endingTimestamp}}
+        <button {{action 'download' group}}>Download</button>
+      </li>
+    {{/each}}
+  </ul>
+{{/if}}

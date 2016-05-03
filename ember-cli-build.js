@@ -1,10 +1,18 @@
 /*jshint node:true*/
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var environment = process.env.EMBER_ENV;
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    // Add options here
+    sassOptions: {
+      outputStyle: environment !== 'test' && environment !== 'development' ? 'compressed': 'expanded',
+      includePaths: [
+        'app/components',
+        'bower_components/normalize-scss/sass',
+        'bower_components/support-for/sass'
+      ]
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -19,6 +27,11 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
+
+  app.import(app.bowerDirectory + '/jszip/dist/jszip.js');
+  app.import(app.bowerDirectory + '/jszip-utils/dist/jszip-utils.js');
+  app.import(app.bowerDirectory + '/file-saver.js/FileSaver.js');
+  app.import(app.bowerDirectory + '/papaparse/papaparse.js');
 
   return app.toTree();
 };
