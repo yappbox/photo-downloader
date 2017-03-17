@@ -4,7 +4,7 @@ import urlToPromise from '../utils/url-to-promise';
 
 const { computed } = Ember;
 
-const NUM_FILES_PER_GROUP = 200;
+const NUM_FILES_PER_GROUP = 110;
 
 export default Ember.Controller.extend({
   csvText: null,
