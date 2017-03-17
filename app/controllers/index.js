@@ -2,7 +2,7 @@
 import Ember from 'ember';
 import urlToPromise from '../utils/url-to-promise';
 
-const { computed } = Ember;
+const { computed, isEmpty } = Ember;
 
 const NUM_FILES_PER_GROUP = 110;
 
@@ -36,6 +36,8 @@ export default Ember.Controller.extend({
           uploader: record['Author'],
           url: record['Image URL']
         };
+      }).filter((record) => {
+        return !isEmpty(record.url);
       }));
     },
     download(group) {
