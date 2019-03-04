@@ -1,5 +1,11 @@
 <div>Paste in your CSV and press the Parse button</div>
-{{one-way-textarea csvText cols=80 rows=10 update=(action (mut csvText))}}
+<textarea
+  value={{csvText}}
+  cols=80
+  rows=10
+  data-gramm="false"
+  oninput={{action (mut csvText) value="target.value"}}
+></textarea>
 
 <br>
 <button {{action 'parse'}}>Parse</button>
@@ -9,7 +15,11 @@
 {{/if}}
 
 {{#if isDownloading}}
-  {{progress-bar percent-complete=progress}}
+  <ProgressCircle
+    @percentage={{progress}}
+    @size=60
+    @color='#569add'
+  />
   <div>
     {{currentFile}}
   </div>
