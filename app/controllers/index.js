@@ -1,17 +1,20 @@
 /* globals Papa, JSZip, saveAs */
-import Ember from 'ember';
-import urlToPromise from '../utils/url-to-promise';
+import { run } from '@ember/runloop';
 
-const { computed, isEmpty } = Ember;
+import Controller from '@ember/controller';
+import { computed } from '@ember/object';
+import { isEmpty } from '@ember/utils';
+import urlToPromise from '../utils/url-to-promise';
 
 const NUM_FILES_PER_GROUP = 110;
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   csvText: null,
   records: null,
+  progress: 0,
   groups: computed('records.[]', function(){
     let ret = [];
-    let records = this.get('records') || [];
+    let records = this.records || [];
     let i = 0;
     while (i < records.length) {
       let group = {};
@@ -26,7 +29,7 @@ export default Ember.Controller.extend({
   }),
   actions: {
     parse(){
-      let csv = this.get('csvText');
+      let csv = this.csvText;
       let results = Papa.parse(csv, {
         header: true
       });
@@ -52,8 +55,8 @@ export default Ember.Controller.extend({
         images.file(filename, urlToPromise(record.url), {binary:true});
       });
       zip.generateAsync({type:"blob"}, (metadata) => {
-        Ember.run(() =>{
-          this.set('progress', metadata.percent);
+        run(() =>{
+          this.set('progress', metadata.percent || 0);
           if (metadata.currentFile) {
             this.set('currentFile', metadata.currentFile);
           }
@@ -61,11 +64,11 @@ export default Ember.Controller.extend({
       }).then((blob) => {
           // see FileSaver.js
           saveAs(blob, `images-${group.num}.zip`);
-          Ember.run(() =>{
+          run(() =>{
             this.set('isDownloading', false);
           });
       }).catch((e) => {
-        Ember.run(() =>{
+        run(() =>{
           this.set('error', e);
           this.set('isDownloading', false);
         });

@@ -1,15 +1,16 @@
 @import '_normalize';
 @import 'bourbon';
 
-@import 'globals/breakpoints';
-@import 'globals/palette';
 @import 'globals/variables';
+@import 'globals/palette';
 @import 'globals/reset';
+
 @import 'globals/sizes';
 @import 'globals/webfonts';
 @import 'globals/typography';
 @import 'globals/animations';
 @import 'globals/browser-support';
 @import 'globals/mixins';
+@import 'globals/utilities';
 
 @import 'components';
