@@ -3533,7 +3533,7 @@ ember-cli-babel@^5.1.7:
     ember-cli-version-checker "^1.0.2"
     resolve "^1.1.2"
 
-ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.10.0, ember-cli-babel@^6.12.0, ember-cli-babel@^6.14.1, ember-cli-babel@^6.16.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.8.1, ember-cli-babel@^6.8.2, ember-cli-babel@^6.9.2:
+ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.10.0, ember-cli-babel@^6.12.0, ember-cli-babel@^6.16.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.8.1, ember-cli-babel@^6.8.2, ember-cli-babel@^6.9.2:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.18.0.tgz#3f6435fd275172edeff2b634ee7b29ce74318957"
   integrity sha512-7ceC8joNYxY2wES16iIBlbPSxwKDBhYwC8drU3ZEvuPDMwVv1KzxCNu1fvxyFEBWhwaRNTUxSCsEVoTd9nosGA==
@@ -4031,11 +4031,12 @@ ember-modal-dialog@^3.0.0-beta.3:
     ember-ignore-children-helper "^1.0.1"
     ember-wormhole "^0.5.5"
 
-"ember-prop-types@git+ssh://git@github.com/yapplabs/ember-prop-types.git#master":
-  version "7.0.3"
-  resolved "git+ssh://git@github.com/yapplabs/ember-prop-types.git#3cb060810940913e0997814eb9ad2d4c6d87847d"
+ember-prop-types@^9.0.2:
+  version "9.0.2"
+  resolved "https://registry.yarnpkg.com/ember-prop-types/-/ember-prop-types-9.0.2.tgz#842641b3cd398dbbdb20fbe817b8e0f810e0b641"
+  integrity sha512-xrR2PP9xCXYbFNsKsryRZyncdUfs9izoGeY7SeMaEDQ7BSzkI99SYpSP5mGWICLfRquV9+If4PQIWXW2qwXppg==
   dependencies:
-    ember-cli-babel "^6.14.1"
+    ember-cli-babel "^6.6.0"
     ember-get-config "^0.2.4"
 
 ember-qunit@^3.4.1:
