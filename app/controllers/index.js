@@ -37,7 +37,7 @@ export default Controller.extend({
         return {
           timestamp: record['Created At'],
           uploader: record['Author'],
-          url: record['Image URL']
+          url: record['Media URL']
         };
       }).filter((record) => {
         return !isEmpty(record.url);
@@ -45,14 +45,16 @@ export default Controller.extend({
     },
     download(group) {
       let zip = new JSZip();
-      let images = zip.folder(`images-${group.num}`);
+      let media = zip.folder(`media-${group.num}`);
       this.set('isDownloading', true);
       this.set('error', null);
       group.records.forEach((record) => {
         let timestamp = record.timestamp;
         let uploader = record.uploader;
-        let filename = 'uploaded-at-' + timestamp.replace(/[ :]/g, "-") + '__' + uploader.replace(/ /g, "-") + '.jpg';
-        images.file(filename, urlToPromise(record.url), {binary:true});
+        let extension = new URL(record.url).pathname.split('.').reverse()[0];
+        
+        let filename = 'uploaded-at-' + timestamp.replace(/[ :]/g, "-") + '__' + uploader.replace(/ /g, "-") + '.' + extension;
+        media.file(filename, urlToPromise(record.url), {binary:true});
       });
       zip.generateAsync({type:"blob"}, (metadata) => {
         run(() =>{
@@ -63,7 +65,7 @@ export default Controller.extend({
         });
       }).then((blob) => {
           // see FileSaver.js
-          saveAs(blob, `images-${group.num}.zip`);
+          saveAs(blob, `media-${group.num}.zip`);
           run(() =>{
             this.set('isDownloading', false);
           });
