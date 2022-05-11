@@ -1,3 +1,6 @@
+# **DEPRECATED** - no longer actively maintained
+
+---
 # Photo-downloader
 
 This README outlines the details of collaborating on this Ember application.
